@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Leak Response Network - Mallorca Pilot</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="logo">LRN</div>
+        <div>
+          <h1>Leak Response Network</h1>
+          <p>Mallorca Pilot</p>
+        </div>
+      </div>
+      <nav>
+        <button class="nav active" data-view="dashboard">Dashboard</button>
+        <button class="nav" data-view="incidents">Incidents</button>
+        <button class="nav" data-view="properties">Properties</button>
+        <button class="nav" data-view="contacts">Response Team</button>
+        <button class="nav" data-view="settings">Pilot Rules</button>
+      </nav>
+      <div class="pilot-note">
+        <strong>Pilot goal</strong>
+        <span>Turn Flume leak alerts into documented response actions.</span>
+      </div>
+    </aside>
+
+    <main>
+      <header class="topbar">
+        <div>
+          <h2 id="pageTitle">Dashboard</h2>
+          <p>HOA leak alert response workflow for Mallorca homeowners.</p>
+        </div>
+        <button id="simulateLeak" class="primary">Simulate Flume Alert</button>
+      </header>
+
+      <section id="dashboard" class="view active-view">
+        <div class="stats-grid">
+          <div class="stat"><span>Active Alerts</span><strong id="activeCount">1</strong></div>
+          <div class="stat"><span>Properties Enrolled</span><strong>3</strong></div>
+          <div class="stat"><span>Open Gallons Lost</span><strong id="gallonsCount">263</strong></div>
+          <div class="stat"><span>Avg Response</span><strong>--</strong></div>
+        </div>
+
+        <div class="panel alert-panel">
+          <div class="panel-head">
+            <h3>Live Alert - Incident #0001</h3>
+            <span class="badge warning">Potential Leak</span>
+          </div>
+          <div class="alert-card">
+            <div class="pipe-icon">🚰</div>
+            <div>
+              <h3>Running toilet detected</h3>
+              <p><strong>Source:</strong> Flume alert • <strong>Duration:</strong> 2 hours • <strong>Estimated loss:</strong> 263.2 gallons</p>
+              <p><strong>Property:</strong> Mallorca Condo • <strong>Status:</strong> Owner acknowledged</p>
+              <div class="actions">
+                <button class="secondary" data-status="Investigating">Mark Investigating</button>
+                <button class="secondary" data-status="Resolved">Mark Resolved</button>
+                <button class="secondary" data-status="False Alarm">Mark Not a Leak</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid-two">
+          <div class="panel">
+            <h3>Response Workflow</h3>
+            <ol class="timeline" id="timeline">
+              <li class="done">Flume detected continuous flow</li>
+              <li class="done">Incident created</li>
+              <li class="done">Owner notified</li>
+              <li class="current">Owner acknowledged</li>
+              <li>Investigating / repair</li>
+              <li>Incident closed</li>
+            </ol>
+          </div>
+          <div class="panel">
+            <h3>Escalation Rules</h3>
+            <ul class="rules">
+              <li>Notify owner immediately.</li>
+              <li>If not acknowledged in 30 minutes, notify emergency contact.</li>
+              <li>If major flow or no response in 60 minutes, notify HOA manager.</li>
+              <li>Track every action for insurance and board reporting.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="incidents" class="view">
+        <div class="panel">
+          <h3>Incident Log</h3>
+          <table>
+            <thead><tr><th>ID</th><th>Property</th><th>Alert</th><th>Gallons</th><th>Status</th><th>Next Action</th></tr></thead>
+            <tbody id="incidentRows"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="properties" class="view">
+        <div class="cards" id="propertyCards"></div>
+      </section>
+
+      <section id="contacts" class="view">
+        <div class="panel">
+          <h3>Generic Pilot Roles</h3>
+          <p>Use role names first. Add real people only after the workflow is approved.</p>
+          <div class="role-grid">
+            <div><strong>Owner</strong><span>Receives all alerts and can close incidents.</span></div>
+            <div><strong>Emergency Contact</strong><span>Escalation contact if owner does not respond.</span></div>
+            <div><strong>HOA Manager</strong><span>Views authorized community-level incident status.</span></div>
+            <div><strong>Vendor / Maintenance</strong><span>Responds and marks repair completed.</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="settings" class="view">
+        <div class="panel">
+          <h3>Mallorca Pilot Privacy Rules</h3>
+          <ul class="rules">
+            <li>Homeowner enrollment is voluntary.</li>
+            <li>The dashboard shows leak alert status, not detailed daily water habits.</li>
+            <li>HOA only sees alerts the homeowner authorizes for response purposes.</li>
+            <li>Each incident keeps a response history: notified, acknowledged, investigated, resolved.</li>
+          </ul>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
